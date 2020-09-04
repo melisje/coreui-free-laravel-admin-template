@@ -21,5 +21,8 @@ class DatabaseSeeder extends Seeder
 //        $this->call('ExampleSeeder');
 //        $this->call('BREADSeeder');
 //        $this->call('EmailSeeder');
+
+        $this->call(CampaignSeeder::class);
+        $this->call(LocationSeeder::class);
     }
 }
