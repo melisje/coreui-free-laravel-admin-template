@@ -1359,16 +1359,16 @@
         },
         {
             "name": "melit/melbase",
-            "version": "1.0.5",
+            "version": "1.0.7",
             "source": {
                 "type": "git",
                 "url": "git@github.com:melisje/melbase.git",
-                "reference": "18316f2a3392c1bd52d8f2e40b563c2924240bae"
+                "reference": "76e48b0a3798e94012e0ce6f42e8cc28b061d7c2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/melisje/melbase/zipball/18316f2a3392c1bd52d8f2e40b563c2924240bae",
-                "reference": "18316f2a3392c1bd52d8f2e40b563c2924240bae",
+                "url": "https://api.github.com/repos/melisje/melbase/zipball/76e48b0a3798e94012e0ce6f42e8cc28b061d7c2",
+                "reference": "76e48b0a3798e94012e0ce6f42e8cc28b061d7c2",
                 "shasum": ""
             },
             "type": "library",
@@ -1395,10 +1395,10 @@
             ],
             "description": "Melbase package",
             "support": {
-                "source": "https://github.com/melisje/melbase/tree/1.0.5",
+                "source": "https://github.com/melisje/melbase/tree/1.0.7",
                 "issues": "https://github.com/melisje/melbase/issues"
             },
-            "time": "2020-08-31T17:34:14+00:00"
+            "time": "2020-09-04T19:15:28+00:00"
         },
         {
             "name": "monolog/monolog",
