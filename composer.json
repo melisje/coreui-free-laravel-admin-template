@@ -16,7 +16,8 @@
         "laravel/tinker": "^2.3.0",
         "spatie/laravel-medialibrary": "^7.19.0",
         "spatie/laravel-permission": "^3.8",
-        "laravel/ui": "^2.0.1"
+        "laravel/ui": "^2.0.1",
+        "melit/melbase": "^1.0.0"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
@@ -25,6 +26,12 @@
         "nunomaduro/collision": "^4.1",
         "phpunit/phpunit": "^8.5"
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url":  "https://github.com/melisje/melbase.git"
+        }
+    ],
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
