@@ -5,6 +5,7 @@ namespace App\Domains\Zerohuis\Controllers;
 use App\Http\Controllers\Controller;
 use Melit\Melbase\ViewModel;
 use App\Domains\Zerohuis\Models\Location;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 use Illuminate\Http\Request;
 
@@ -50,9 +51,11 @@ class LocationController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Location $location)
     {
-        //
+        $vm           = new ViewModel('zerohuis.location.show');
+        $vm->location = $location;
+        return $vm;
     }
 
     /**
@@ -87,5 +90,23 @@ class LocationController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function qrcode(Location $location)
+    {
+
+        $url = route('location.show', $location);
+
+        // https://www.simplesoftware.io/#/docs/simple-qrcode
+        $qrcode = QrCode::format('png')
+            //                        ->merge('img/zh-black.png', 0.3, true)
+                        ->size(500)
+                        ->errorCorrection('M')
+                        ->color(255, 255, 255)
+                        ->backgroundColor(132, 98, 51)
+                        ->generate($url)
+        ;
+
+        return response($qrcode)->header('Content-type', 'image/png');
     }
 }
