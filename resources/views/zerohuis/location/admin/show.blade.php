@@ -1,4 +1,4 @@
-@extends('zerohuis.base')
+@extends('zerohuis.admin')
 
 @section('c-sidebar-brand-full',asset('assets/brand/zerohuis_logo_invers.svg'))
 

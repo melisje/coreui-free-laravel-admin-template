@@ -18,7 +18,7 @@ class LocationAdminController extends Controller
      */
     public function index()
     {
-        $vm            = new ViewModel('zerohuis.location.index');
+        $vm            = new ViewModel('zerohuis.location.admin.index');
         $vm->locations = Location::all();
 
         return $vm;
@@ -53,7 +53,7 @@ class LocationAdminController extends Controller
      */
     public function show(Location $location)
     {
-        $vm           = new ViewModel('zerohuis.location.show');
+        $vm           = new ViewModel('zerohuis.location.admin.show');
         $vm->location = $location;
         return $vm;
     }

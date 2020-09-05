@@ -50,7 +50,9 @@ class LocationController extends Controller
      */
     public function show(Location $location)
     {
-        //
+        $vm = new ViewModel('zerohuis.location.show');
+        $vm->location = $location;
+        return $vm;
     }
 
     /**

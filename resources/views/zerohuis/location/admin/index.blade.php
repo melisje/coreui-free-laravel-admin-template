@@ -1,10 +1,14 @@
-@extends('zerohuis.base')
+@extends('zerohuis.admin')
 
 @section('c-sidebar-brand-full',asset('assets/brand/zerohuis_logo_invers.svg'))
 @section('c-sidebar-brand-full-alt','Zerohuis logo')
-
 @section('c-sidebar-brand-minimized',asset('assets/brand/zh.svg'))
 @section('c-sidebar-brand-minimized-alt','Zerohuis logo')
+
+@section('page-description','Zerohuis | Manage locations and print QR codes')
+@section('page-keywords','Zerohuis bouwen energie neutraal opendeur openberijvendag locaties')
+@section('page-title','Zerohuis | Locations')
+
 
 @section('content')
 

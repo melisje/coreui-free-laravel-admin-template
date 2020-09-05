@@ -1,5 +1,5 @@
 <div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
-    @include('_partials.c-sidebar-brand')
+    @include('layouts.partials.c-sidebar-brand')
     <ul class="c-sidebar-nav">
         @section('c-sidebar-nav')
             <li class="c-sidebar-nav-title">Nav Title</li>
