@@ -10,9 +10,9 @@
             <h1>{{ $location->name }}</h1>
 
 
-            <a href="{{ route('location.qrcode',$location) }}" class="btn btn-primary" target="_blank"><i class="cil-print"></i></a>
+            <a href="{{ route('admin.location.qrcode',$location) }}" class="btn btn-primary" target="_blank"><i class="cil-print"></i></a>
 
-            <img src="{{ route('location.qrcode',$location) }}" alt="{{ $location->name }}">
+            <img src="{{ route('admin.location.qrcode',$location) }}" alt="{{ $location->name }}">
 
         </div>
     </div>

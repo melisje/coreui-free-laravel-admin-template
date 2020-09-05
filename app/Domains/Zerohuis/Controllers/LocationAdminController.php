@@ -9,7 +9,7 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 use Illuminate\Http\Request;
 
-class LocationController extends Controller
+class LocationAdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +18,10 @@ class LocationController extends Controller
      */
     public function index()
     {
+        $vm            = new ViewModel('zerohuis.location.index');
+        $vm->locations = Location::all();
 
+        return $vm;
     }
 
     /**
@@ -50,7 +53,9 @@ class LocationController extends Controller
      */
     public function show(Location $location)
     {
-        //
+        $vm           = new ViewModel('zerohuis.location.show');
+        $vm->location = $location;
+        return $vm;
     }
 
     /**
@@ -87,4 +92,21 @@ class LocationController extends Controller
         //
     }
 
+    public function qrcode(Location $location)
+    {
+
+        $url = route('location.show', $location);
+
+        // https://www.simplesoftware.io/#/docs/simple-qrcode
+        $qrcode = QrCode::format('png')
+            //                        ->merge('img/zh-black.png', 0.3, true)
+                        ->size(500)
+                        ->errorCorrection('M')
+                        ->color(255, 255, 255)
+                        ->backgroundColor(132, 98, 51)
+                        ->generate($url)
+        ;
+
+        return response($qrcode)->header('Content-type', 'image/png');
+    }
 }

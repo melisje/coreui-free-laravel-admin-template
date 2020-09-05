@@ -241,7 +241,7 @@ Route::group(['middleware' => ['get.menu']], function ()
 /*
 * Include Zerohuis routes
 */
-Route::group(['middleware' => ['auth']], function ()
+Route::group(['middleware' => ['web']], function ()
 {
     includeRoutes('zerohuis');
 });
