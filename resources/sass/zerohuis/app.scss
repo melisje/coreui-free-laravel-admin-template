@@ -1,0 +1,20 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+// Font-awesome
+@import "~font-awesome/scss/font-awesome.scss";
+
+// Datatables - bs4
+// https://bloggie.io/@jctan/laravel-datatable-installation
+@import '~datatables.net-bs4/css/dataTables.bootstrap4.css';
+
+@import '~@sweetalert2/theme-bootstrap-4/bootstrap-4.scss';
+
+// Zerohuis
+@import 'zerohuis';

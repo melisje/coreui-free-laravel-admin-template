@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="100" height="100px" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
+  <defs>
+    <bx:guide x="-0.783" y="-52.94" angle="90"/>
+  </defs>
+  <rect width="200" height="200" style="vector-effect: non-scaling-stroke; fill: rgb(251, 251, 251);" rx="29.319" ry="29.319"/>
+  <g transform="matrix(1.576204, 0, 0, 2.230205, -28.472004, -1.208933)" style="">
+    <path d="M132.72,74.272V49.4a.091.091,0,0,0-.09-.09H99.82V41.453h32.9v-24.9c1.409,0,5.617.024,7.856.024v57.7Z" fill-rule="evenodd" style="stroke: rgb(0, 0, 0); stroke-width: 2.10172px;"/>
+    <path d="M26.366,74.292a3.929,3.929,0,0,1-2.779-6.705L66.854,24.325H22.516V16.47H76.581l.113.017a3.928,3.928,0,0,1,2.665,6.418l-.247.269L35.851,66.436H85.962V16.482h7.856V70.315a3.943,3.943,0,0,1-3.925,3.977Z" fill-rule="evenodd" style="stroke: rgb(0, 0, 0); stroke-width: 2.10172px;"/>
+  </g>
+</svg>
