@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Melit\Melbase\ViewModel;
 use App\Domains\Zerohuis\Models\Location;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use App\Domains\Zerohuis\Models\Contact;
 
 use Illuminate\Http\Request;
 
@@ -52,7 +53,17 @@ class LocationController extends Controller
     {
         $vm = new ViewModel('zerohuis.location.show');
         $vm->location = $location;
-        return $vm;
+
+
+        /*
+         * check if a contact cookie is present
+         */
+        $cookie      = request()->cookie('contact');
+        $vm->cookie  = isset($cookie);
+        $vm->contact = Contact::json_decode($cookie);
+        //$vm->cookie_found = $isset
+
+        return $vm->flash('key', "Showing location $location->id");
     }
 
     /**

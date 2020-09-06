@@ -10,7 +10,7 @@
             {!! Form::open(route('contact.store'),'post',['id' =>'contact-form']) !!}
         @endisset
 
-        {!! Form::hidden('realization_id',$realization->id) !!}
+        {!! Form::hidden('location_id',$location->id) !!}
 
         <div class="form-group contact-div" id="contact-div-name">
             <div class="input-group-lg">

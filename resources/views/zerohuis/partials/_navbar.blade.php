@@ -1,8 +1,9 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-black  shadow-sm">
     <div class="container">
-        <a class="navbar-brand" href="{{ url('/') }}">
+        <a class="navbar-brand pt-2" href="{{ url('/') }}">
             @section('brand')
-                <img src="{{ asset('assets/brand/zh.png') }}" alt="{{ config('app.name', 'Laravel') }}" height="30">
+                <img src="{{ asset('assets/img/zerohuis/zerohuis_logo_invers.svg') }}" alt="{{ config('app.name', 'Laravel') }}" class="img-fluid d-none d-sm-block ">
+                <img src="{{ asset('assets/img/zerohuis/zh.svg') }}" alt="{{ config('app.name', 'Laravel') }}" class="img-fluid d-sm-none">
             @show
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse"

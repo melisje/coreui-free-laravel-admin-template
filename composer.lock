@@ -1405,16 +1405,16 @@
         },
         {
             "name": "melit/melbase",
-            "version": "1.0.15",
+            "version": "1.0.16",
             "source": {
                 "type": "git",
                 "url": "git@github.com:melisje/melbase.git",
-                "reference": "a41575f875248f5aba4900c803ac628e171e10a3"
+                "reference": "d7dbc7ff9ef6d2fa487c08d7113290d77b127474"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/melisje/melbase/zipball/a41575f875248f5aba4900c803ac628e171e10a3",
-                "reference": "a41575f875248f5aba4900c803ac628e171e10a3",
+                "url": "https://api.github.com/repos/melisje/melbase/zipball/d7dbc7ff9ef6d2fa487c08d7113290d77b127474",
+                "reference": "d7dbc7ff9ef6d2fa487c08d7113290d77b127474",
                 "shasum": ""
             },
             "type": "library",
@@ -1422,7 +1422,12 @@
                 "laravel": {
                     "providers": [
                         "Melit\\Melbase\\MelbaseServiceProvider"
-                    ]
+                    ],
+                    "aliases": {
+                        "Form": "Melit\\Melbase\\Form",
+                        "ViewModel": "Melit\\Melbase\\ViewModel",
+                        "ViewModelMapper": "Melit\\Melbase\\ViewModelMapper"
+                    }
                 }
             },
             "autoload": {
@@ -1444,10 +1449,10 @@
             ],
             "description": "Melbase package",
             "support": {
-                "source": "https://github.com/melisje/melbase/tree/1.0.15",
+                "source": "https://github.com/melisje/melbase/tree/1.0.16",
                 "issues": "https://github.com/melisje/melbase/issues"
             },
-            "time": "2020-09-05T11:14:30+00:00"
+            "time": "2020-09-06T13:00:51+00:00"
         },
         {
             "name": "monolog/monolog",

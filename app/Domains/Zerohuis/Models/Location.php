@@ -19,4 +19,9 @@ class Location extends Model
                     ->as('visit')
             ;
     }
+
+    public function photos()
+    {
+        return $this->hasMany(Photo::class);
+    }
 }
