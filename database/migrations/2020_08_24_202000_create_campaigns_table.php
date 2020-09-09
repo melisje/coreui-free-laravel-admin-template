@@ -18,6 +18,7 @@ class CreateCampaignsTable extends Migration
             $table->string('id')->primary();
             $table->string('name');
             $table->longText('description')->nullable();
+            $table->boolean('default')->default(false);
             $table->timestamps();
         });
     }
