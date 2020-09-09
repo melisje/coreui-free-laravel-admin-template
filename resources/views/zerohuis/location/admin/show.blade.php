@@ -7,12 +7,34 @@
     <div class="container">
         <div class="fade-in">
 
+            <div class="text-center">
             <h1>{{ $location->name }}</h1>
 
+            <div class="row">
+                <div class="col text-center">
 
-            <a href="{{ route('admin.location.qrcode',$location) }}" class="btn btn-primary" target="_blank"><i class="cil-print"></i></a>
+                    <figure class="figure">
+                        <img src="{{ route('admin.location.qrcode',$location) }}" alt="{{ $location->name }}" class="img-fluid">
+                        <figcaption class="figure-caption"><a href="{{ $url }}" target="_blank" class="text-black">{{ $url }}</a></figcaption>
+                    </figure>
+                </div>
+            </div>
 
-            <img src="{{ route('admin.location.qrcode',$location) }}" alt="{{ $location->name }}">
+            <div class="row">
+                <div class="col">
+                    <a href="{{ route('admin.location.qrcode',$location) }}" class="btn btn-secondary btn-lg" target="_blank"><i
+                            class="cil-print"></i> @lang('Print QR Code')</a>
+                </div>
+            </div>
+            </div>
+
+
+
+
+
+            <div>
+
+            </div>
 
         </div>
     </div>

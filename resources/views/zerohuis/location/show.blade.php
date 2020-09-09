@@ -9,7 +9,7 @@
     @include('zerohuis.partials._covid19')
     @include('zerohuis.partials._pageintro',['text' => __('look inside')])
 
-    @if(!$visited)
+    @if($show_contact_tracing)
         @include('zerohuis.location.partials.contact-tracing')
     @else
         @include('zerohuis.location.partials.location-info')

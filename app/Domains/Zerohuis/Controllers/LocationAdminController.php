@@ -55,6 +55,7 @@ class LocationAdminController extends Controller
     {
         $vm           = new ViewModel('zerohuis.location.admin.show');
         $vm->location = $location;
+        $vm->url      = route('location.show.qr', $location);
         return $vm;
     }
 
@@ -95,7 +96,7 @@ class LocationAdminController extends Controller
     public function qrcode(Location $location)
     {
 
-        $url = route('location.show', $location);
+        $url = route('location.show.qr', $location);
 
         // https://www.simplesoftware.io/#/docs/simple-qrcode
         $qrcode = QrCode::format('png')

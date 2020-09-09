@@ -38,7 +38,7 @@ class ContactController extends Controller
             'location'    => request('location'),
             'street'      => request('street'),
             'extra'       => request('extra'),
-            'campaign_id' => Campaign::default()->id,
+            'campaign_id' => optional(Campaign::default())->id,
             'consent'     => request('consent', false),
         ];
 
@@ -58,7 +58,7 @@ class ContactController extends Controller
         /*
          * set cookie to remember the last time user was 'here'
          */
-        Cookie::queue($location_id, 'visited', config('zerohuis.contact.minutes', 60)); // valid for x minutes
+        Cookie::queue($location_id, now(), config('zerohuis.contact.minutes', 60)); // valid for x minutes
 
 
         $contact->locations()->attach($location_id, $vdata);
@@ -73,7 +73,7 @@ class ContactController extends Controller
         }
         else
         {
-            return redirect(route('location.show', $location_id));
+            return redirect(route('location.show.qr', $location_id));
         }
 
     }

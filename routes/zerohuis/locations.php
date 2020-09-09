@@ -5,6 +5,7 @@ Route::namespace('\\App\\Domains\\Zerohuis\\Controllers')
      {
 
          Route::resource('location', 'LocationController');
+         Route::get('location/{location}/qr','LocationController@show')->name('location.show.qr');
 
 
      })

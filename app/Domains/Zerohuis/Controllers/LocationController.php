@@ -3,7 +3,9 @@
 namespace App\Domains\Zerohuis\Controllers;
 
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Route;
 use Melit\Melbase\ViewModel;
 use App\Domains\Zerohuis\Models\Location;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
@@ -50,17 +52,39 @@ class LocationController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Location $location)
+    public function show(Request $request, Location $location)
     {
         $vm           = new ViewModel('zerohuis.location.show');
         $vm->location = $location;
+
+
+        if (Route::currentRouteName() === 'location.show.qr')
+        {
+            if ($cookie = $request->cookie($location->id))
+            {
+                $visit_due = (new Carbon($cookie))->addMinutes(config('zerohuis.cookie.minutes', 15));;
+                $vm->show_contact_tracing = now()->isAfter($visit_due);
+            }
+            else
+            {
+                $vm->show_contact_tracing = true;
+            }
+        }
+        else
+        {
+            $vm->show_contact_tracing = false;
+        }
 
         /*
          * Check if we already visited this location.
          * If we did, a valid cookie with the location's id should be present
          */
-        $vm->visited = request()->cookie($location->id, false) ?? true;
 
+
+
+        //        $vm->visited = request()->cookie($location->id, false);
+
+        //        $vm->visited = $vm->visited->addMinutes(config('zerohuis.cookie.minutes',15));
         /*
          * check if a contact cookie is present
          * If present, the cookie contains the id of the contact that was used on the device the current user is using
@@ -68,15 +92,14 @@ class LocationController extends Controller
         $cookie = request()->cookie('contact');
         if ($cookie)
         {
-            $cookie_decoded = json_decode($cookie);
-            $vm->contact    = Contact::find($cookie_decoded->contact_id);
+            $cookie_decoded       = json_decode($cookie);
+            $vm->contact          = Contact::find($cookie_decoded->contact_id);
             $vm->contact->persons = $cookie_decoded->persons;
         }
         else
         {
             $vm->contact = new Contact();
         }
-
 
 
         return $vm->flash('key', "Showing location $location->id");
