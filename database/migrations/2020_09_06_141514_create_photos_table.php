@@ -27,7 +27,7 @@ class CreatePhotosTable extends Migration
 
             $table->timestamps();
 
-            $table->foreign('location_id')->references('id')->on("locations");
+            $table->foreign('location_id')->references('id')->on("locations")->onUpdate('cascade');
         });
     }
 
@@ -38,6 +38,6 @@ class CreatePhotosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('photos');
+        Schema::dropIfExists('zh_photos');
     }
 }

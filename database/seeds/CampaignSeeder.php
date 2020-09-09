@@ -20,7 +20,7 @@ class CampaignSeeder extends Seeder
 
         $this->truncate('campaigns');
 
-        Campaign::create(['id' => 'openhuis', 'name' => 'Open huis campagne']);
+        Campaign::create(['id' => 'openhuis', 'name' => 'Open huis campagne', 'default' => true]);
         Campaign::create(['id' => 'facebook', 'name' => 'Facebook campagne']);
         Campaign::create(['id' => 'newspaper', 'name' => 'Kranten campagne']);
 

@@ -14,4 +14,23 @@ class Campaign extends Model
     {
         return $this->belongsToMany(Contact::class);
     }
+
+    /**
+     * Scope to return all Campaigns that have default=true
+     * @param $query
+     * @return mixed
+     */
+    public function scopeAllDefaults($query)
+    {
+        return $query->where('default', true);
+    }
+
+    /**
+     * return the first Campaign in the collection with default=true
+     * @return mixed
+     */
+    public static function default()
+    {
+        return Campaign::allDefaults()->first();
+    }
 }
