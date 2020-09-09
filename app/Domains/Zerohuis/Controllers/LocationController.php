@@ -3,6 +3,7 @@
 namespace App\Domains\Zerohuis\Controllers;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Cookie;
 use Melit\Melbase\ViewModel;
 use App\Domains\Zerohuis\Models\Location;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
@@ -51,17 +52,32 @@ class LocationController extends Controller
      */
     public function show(Location $location)
     {
-        $vm = new ViewModel('zerohuis.location.show');
+        $vm           = new ViewModel('zerohuis.location.show');
         $vm->location = $location;
 
+        /*
+         * Check if we already visited this location.
+         * If we did, a valid cookie with the location's id should be present
+         */
+        $vm->visited = request()->cookie($location->id, false) ?? true;
 
         /*
          * check if a contact cookie is present
+         * If present, the cookie contains the id of the contact that was used on the device the current user is using
          */
-        $cookie      = request()->cookie('contact');
-        $vm->cookie  = isset($cookie);
-        $vm->contact = Contact::json_decode($cookie);
-        //$vm->cookie_found = $isset
+        $cookie = request()->cookie('contact');
+        if ($cookie)
+        {
+            $cookie_decoded = json_decode($cookie);
+            $vm->contact    = Contact::find($cookie_decoded->contact_id);
+            $vm->contact->persons = $cookie_decoded->persons;
+        }
+        else
+        {
+            $vm->contact = new Contact();
+        }
+
+
 
         return $vm->flash('key', "Showing location $location->id");
     }
