@@ -31,10 +31,22 @@ class Contact extends Model
     protected $encryptable = ['name', 'phone','email','street'];
 
 
-//    public function realization()
-//    {
-//        return $this->belongsTo(Realization::class);
-//    }
+    /**
+     * return the Locations this Contact visited.
+     * The visit pivot contains extra attributes:
+     * - persons: the number of persons that were together with the contact, including the contact
+     * - start_at: the time the visit started
+     * - end_at: the time the visit ended (or null if not defined)
+     * - timestamps for created_at and updated_at
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function locations()
+    {
+        return $this->belongsToMany(Location::class, 'visits')
+                    ->as('visit')
+                    ->withTimestamps()
+            ;
+    }
 
     public static function json_decode($json)
     {
