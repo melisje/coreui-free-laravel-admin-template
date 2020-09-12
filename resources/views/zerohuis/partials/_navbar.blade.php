@@ -20,14 +20,6 @@
 
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
-                @isset($contact->id)
-                    <li class="nav-item">
-                        <a href="{{ route('contact.edit',$contact) }}" class="nav-link">
-                            <i class="fa fa-group"></i>
-                            Edit contact info
-                        </a>
-                    </li>
-                @endisset
                 @stack('navbar-right')
             </ul>
         </div>
