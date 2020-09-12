@@ -14,6 +14,7 @@
     @else
         @include('zerohuis.location.partials.location-info')
         @include('zerohuis.location.partials.location-photos')
+        @include('zerohuis.location.partials.location-maps')
     @endif
 
     @include('zerohuis.partials.zh-contact-us')
