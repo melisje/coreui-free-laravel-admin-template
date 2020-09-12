@@ -1,6 +1,5 @@
 <div id="pageIntro">
-    <div id="pageIntroBg" data-resize="pageIntroBg"
-         style="background-imagex: url({{ asset('img/pageIntro-01.jpg') }});">
+    <div id="pageIntroBg" data-resize="pageIntroBg">
     </div>
 
     <div id="introBaseline" class="animation-element scale-up ">
