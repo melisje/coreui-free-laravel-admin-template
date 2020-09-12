@@ -19,8 +19,8 @@
     </li>
     <span class="navbar-text text-zero-brown d-none d-md-block">|</span>
     <li class="nav-item">
-        <a href="https://www.zerohuis.be" target="_blank" class="nav-link">
-            ZEROHUIS
+        <a href="https://www.zerohuis.be/realisaties" target="_blank" class="nav-link">
+            REALISATIES
         </a>
     </li>
 @endpush
