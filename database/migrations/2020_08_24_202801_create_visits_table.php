@@ -22,10 +22,17 @@ class CreateVisitsTable extends Migration
             $table->unsignedInteger('persons')->default(0);
             $table->timestamps();
 
-            $table->primary(['location_id', 'contact_id']);
+            $table->primary(['location_id', 'contact_id','start_at']);
 
-            $table->foreign('location_id')->references('id')->on('locations')->onUpdate('cascade');
-            $table->foreign('contact_id')->references('id')->on('contacts')->onUpdate('cascade');
+            $table->foreign('location_id')->references('id')->on('locations')
+                  ->onUpdate('cascade')
+                  ->onDelete('cascade')
+            ;
+
+            $table->foreign('contact_id')->references('id')->on('contacts')
+                  ->onUpdate('cascade')
+                  ->onDelete('cascade')
+            ;
         });
     }
 

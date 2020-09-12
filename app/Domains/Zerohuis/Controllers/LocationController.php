@@ -57,18 +57,11 @@ class LocationController extends Controller
         $vm           = new ViewModel('zerohuis.location.show');
         $vm->location = $location;
 
-
+        // only show contact_tracing if scanned with qr code
         if (Route::currentRouteName() === 'location.show.qr')
         {
-            if ($cookie = $request->cookie($location->id))
-            {
-                $visit_due = (new Carbon($cookie))->addMinutes(config('zerohuis.cookie.minutes', 15));;
-                $vm->show_contact_tracing = now()->isAfter($visit_due);
-            }
-            else
-            {
-                $vm->show_contact_tracing = true;
-            }
+            // if we don't find the cookie for this Location, show the contact tracing form
+            $vm->show_contact_tracing = !$request->hasCookie($location->id);
         }
         else
         {
@@ -76,33 +69,35 @@ class LocationController extends Controller
         }
 
         /*
-         * Check if we already visited this location.
-         * If we did, a valid cookie with the location's id should be present
+         * Check if a contact cookie is present
+         * If present we assume it is the same person and the cookie contains the id 
+         * of the contact that was used on the device the current user is using
          */
-
-
-
-        //        $vm->visited = request()->cookie($location->id, false);
-
-        //        $vm->visited = $vm->visited->addMinutes(config('zerohuis.cookie.minutes',15));
-        /*
-         * check if a contact cookie is present
-         * If present, the cookie contains the id of the contact that was used on the device the current user is using
-         */
-        $cookie = request()->cookie('contact');
-        if ($cookie)
+        if ($cookie = request()->cookie('contact'))
         {
-            $cookie_decoded       = json_decode($cookie);
-            $vm->contact          = Contact::find($cookie_decoded->contact_id);
-            $vm->contact->persons = $cookie_decoded->persons;
+            // decode cookie and find contact
+            $cookie_decoded = json_decode($cookie);
+            $vm->contact    = Contact::find($cookie_decoded->contact_id);
+            
+            // add the persons propertie if we have a contact found 
+            if ($vm->contact)
+            {
+                $vm->contact->persons = $cookie_decoded->persons;
+            }
+            else
+            {
+                $vm->contact              = new Contact();
+                $vm->show_contact_tracing = true;
+            }
         }
         else
         {
-            $vm->contact = new Contact();
+            $vm->contact              = new Contact();
+            $vm->show_contact_tracing = true;
         }
 
-
-        return $vm->flash('key', "Showing location $location->id");
+        // return $vm->flash('key', "Showing location $location->id");
+        return $vm;
     }
 
     /**

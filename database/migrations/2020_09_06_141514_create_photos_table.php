@@ -13,7 +13,8 @@ class CreatePhotosTable extends Migration
      */
     public function up()
     {
-        Schema::create('zh_photos', function (Blueprint $table) {
+        Schema::create('zh_photos', function (Blueprint $table)
+        {
             $table->id();
             $table->string('location_id');
 
@@ -27,7 +28,10 @@ class CreatePhotosTable extends Migration
 
             $table->timestamps();
 
-            $table->foreign('location_id')->references('id')->on("locations")->onUpdate('cascade');
+            $table->foreign('location_id')->references('id')->on("locations")
+                  ->onUpdate('cascade')
+                  ->onDelete('cascade')
+            ;
         });
     }
 

@@ -42,7 +42,16 @@ class ContactController extends Controller
             'consent'     => request('consent', false),
         ];
 
-        $contact = Contact::create($cdata);
+        $contact_id = request('contact_id');
+        if ($contact_id)
+        {
+            $contact = Contact::find($contact_id);
+            $contact->update($cdata);
+        }
+        else
+        {
+            $contact = Contact::create($cdata);
+        }
 
         /*
          * prepare visit and cookie info
@@ -53,13 +62,12 @@ class ContactController extends Controller
             'start_at'   => Carbon::now(),
         ];
 
-        Cookie::queue('contact', json_encode($vdata)); // contact cookie always valid
+        Cookie::queue('contact', json_encode($vdata), 60 * 24 * 3650); // contact cookie valid for 10 years
 
         /*
          * set cookie to remember the last time user was 'here'
          */
-        Cookie::queue($location_id, now(), config('zerohuis.contact.minutes', 60)); // valid for x minutes
-
+        Cookie::queue($location_id, now(), config('zerohuis.cookie.minutes', 60 )); // default valid for an hour
 
         $contact->locations()->attach($location_id, $vdata);
 

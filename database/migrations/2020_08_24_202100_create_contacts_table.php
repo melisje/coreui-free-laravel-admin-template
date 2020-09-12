@@ -27,7 +27,10 @@ class CreateContactsTable extends Migration
             $table->string('campaign_id')->nullable();
             $table->timestamps();
 
-            $table->foreign('campaign_id')->references('id')->on('campaigns')->onUpdate('cascade');
+            $table->foreign('campaign_id')->references('id')->on('campaigns')
+                  ->onUpdate('cascade')
+                  ->onDelete('set null')
+            ;
 
         });
     }
