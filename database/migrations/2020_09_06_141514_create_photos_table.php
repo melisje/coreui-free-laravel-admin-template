@@ -24,6 +24,7 @@ class CreatePhotosTable extends Migration
             $table->string('download_url');
             $table->integer('width');
             $table->integer('height');
+            $table->boolean('cover')->default(false);
 
 
             $table->timestamps();
