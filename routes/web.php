@@ -13,7 +13,7 @@
 
 Route::group(['middleware' => ['get.menu']], function ()
 {
-    Route::get('/', function ()
+    Route::get('/admin', function ()
     {
         return view('dashboard.homepage');
     });
@@ -236,7 +236,6 @@ Route::group(['middleware' => ['get.menu']], function ()
         ;
     });
 });
-
 
 /*
 * Include Zerohuis routes

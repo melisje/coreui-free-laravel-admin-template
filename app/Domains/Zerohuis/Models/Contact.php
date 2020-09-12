@@ -2,6 +2,7 @@
 
 namespace App\Domains\Zerohuis\Models;
 
+use Carbon\Carbon;
 use Melit\Melbase\Models\Traits\Encryptable;
 use Illuminate\Database\Eloquent\Model;
 
@@ -28,7 +29,7 @@ class Contact extends Model
      * APP.KEY in .env. If you loose or change this key, you can't retrieve the values anymore !!
      *
      */
-    protected $encryptable = ['name', 'phone','email','street'];
+    protected $encryptable = ['name', 'phone', 'email', 'street'];
 
 
     /**
@@ -59,6 +60,22 @@ class Contact extends Model
     public function campaigns()
     {
         return $this->belongsToMany(Campaign::class);
+    }
+
+    /**
+     * Scope to return only Contacts that have the consent property = 0.
+     * Contacts that have not given their consent to be contacted appart from contact tracing (Covid)
+     * @param $query
+     */
+    public function scopeNoConsent($query)
+    {
+        $query->where('consent', false);
+    }
+
+    public function scopeChangedBefore($query,$days)
+    {
+        $cleandate = new Carbon();
+        $query->where('updated_at','<=', $cleandate);
     }
 
 }

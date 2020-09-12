@@ -22,7 +22,9 @@ class LocationController extends Controller
      */
     public function index()
     {
-
+        $vm            = new ViewModel('zerohuis.location.index');
+        $vm->locations = Location::all();
+        return $vm;
     }
 
     /**
@@ -70,7 +72,7 @@ class LocationController extends Controller
 
         /*
          * Check if a contact cookie is present
-         * If present we assume it is the same person and the cookie contains the id 
+         * If present we assume it is the same person and the cookie contains the id
          * of the contact that was used on the device the current user is using
          */
         if ($cookie = request()->cookie('contact'))
@@ -78,8 +80,8 @@ class LocationController extends Controller
             // decode cookie and find contact
             $cookie_decoded = json_decode($cookie);
             $vm->contact    = Contact::find($cookie_decoded->contact_id);
-            
-            // add the persons propertie if we have a contact found 
+
+            // add the persons propertie if we have a contact found
             if ($vm->contact)
             {
                 $vm->contact->persons = $cookie_decoded->persons;
@@ -132,6 +134,24 @@ class LocationController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function qrcode(Location $location)
+    {
+
+        $url = route('location.show.qr', $location);
+
+        // https://www.simplesoftware.io/#/docs/simple-qrcode
+        $qrcode = QrCode::format('png')
+            //                        ->merge('img/zh-black.png', 0.3, true)
+                        ->size(500)
+                        ->errorCorrection('M')
+                        ->color(255, 255, 255)
+                        ->backgroundColor(132, 98, 51)
+                        ->generate($url)
+        ;
+
+        return response($qrcode)->header('Content-type', 'image/png');
     }
 
 }
