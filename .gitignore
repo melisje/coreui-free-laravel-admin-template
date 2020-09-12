@@ -28,3 +28,4 @@ yarn-error.log
 composer.phar
 .idea
 /packages
+/**/.DS_Store
